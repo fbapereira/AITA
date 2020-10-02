@@ -1,0 +1,8 @@
+<p>Add your story and let the community to vote between:</p>
+<div class="vote-options">
+  <div class="vote-option" *ngFor="let voteOption of voteOptions">
+    <img [src]="voteOption.image">
+    <h2>{{ voteOption.abbreviation }}</h2>
+    <p>{{ voteOption.text }}</p>
+  </div>
+</div>
