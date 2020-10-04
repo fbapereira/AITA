@@ -1,16 +1,18 @@
 <article>
-  <h2>
-    {{ article.title }}
-  </h2>
-  <div class="self-text" [innerHtml]="article.selftext"></div>
-  <div class="footer">
+  <div class="thumb-header">
     <div class="info">
-      <p> {{ (article.upvote_ratio * 10) | number:'1.1-1' }} </p>
+      <p class="ratio"> {{ (article.upvote_ratio * 10) | number:'1.1-1' }} </p>
       <div class="creation-info">
         <p class="author"> {{ article.author }} </p>
         <p class="date"> {{ article.created | date }}  </p>
       </div>
     </div>
-    <span> {{ article.num_comments }} comments </span>
+    <span class="comments"> {{ article.num_comments }} comments </span>
+  </div>
+  <div class="content">
+    <h2>
+      {{ article.title }}
+    </h2>
+    <div class="self-text" [innerHtml]="article.selftext"></div>
   </div>
 </article>
