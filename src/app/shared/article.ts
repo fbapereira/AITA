@@ -1,4 +1,5 @@
 export class Article {
+  id: string;
   author: string;
   created: Date;
   selftext: string;

@@ -5,55 +5,58 @@ $font-size-medium: 2rem / 2;
 $font-size-small: 2rem / 3;
 
 article {
-  background: $thumb-background;
   margin: 5rem;
-  padding: 1rem;
-  box-shadow: $thumb-shadow;
 
-  .thumb-header {
+  .article {
+    background: $thumb-background;
+    padding: 1rem;
+    box-shadow: $thumb-shadow;
 
-    &,
-    .info {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      font-size: $font-size;
-      color: $primary;
+    .thumb-header {
 
-      .ratio {
-        margin: 0 .5rem;
-      }
-
-      .creation-info {
+      &,
+      .info {
         display: flex;
-        flex-flow: column;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: $font-size;
+        color: $primary;
 
-        .author,
-        .date {
-          margin: 0;
+        .ratio {
+          margin: 0 .5rem;
         }
 
-        .author {
-          font-size: $font-size-medium;
-        }
+        .creation-info {
+          display: flex;
+          flex-flow: column;
 
-        .date {
-          margin-top: .3rem;
-          font-size: $font-size-small;
+          .author,
+          .date {
+            margin: 0;
+          }
+
+          .author {
+            font-size: $font-size-medium;
+          }
+
+          .date {
+            margin-top: .3rem;
+            font-size: $font-size-small;
+          }
         }
+      }
+
+      .comments {
+        font-size: $font-size-medium;
       }
     }
 
-    .comments {
-      font-size: $font-size-medium;
-    }
-  }
+    .content {
+      margin: 2rem;
 
-  .content {
-    margin: 2rem;
-
-    .self-text {
-      white-space: pre-wrap;
+      .self-text {
+        white-space: pre-wrap;
+      }
     }
   }
 }

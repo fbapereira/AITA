@@ -1,18 +1,28 @@
 <article>
-  <div class="thumb-header">
-    <div class="info">
-      <p class="ratio"> {{ (article.upvote_ratio * 10) | number:'1.1-1' }} </p>
-      <div class="creation-info">
-        <p class="author"> {{ article.author }} </p>
-        <p class="date"> {{ article.created | date }}  </p>
+  <div class="article">
+    <div class="thumb-header">
+      <div class="info">
+        <p class="ratio"> {{ (article.upvote_ratio * 10) | number:'1.1-1' }} </p>
+        <div class="creation-info">
+          <p class="author"> {{ article.author }} </p>
+          <p class="date"> {{ article.created | date }}  </p>
+        </div>
       </div>
+      <span class="comments"> {{ article.num_comments }} comments </span>
     </div>
-    <span class="comments"> {{ article.num_comments }} comments </span>
+    <div class="content">
+      <h2>
+        {{ article.title }}
+      </h2>
+      <div class="self-text" [innerHtml]="article.selftext"></div>
+      <button (click)="loadComments()"> Load Comments ({{ article.num_comments }})</button>
+    </div>
   </div>
-  <div class="content">
-    <h2>
-      {{ article.title }}
-    </h2>
-    <div class="self-text" [innerHtml]="article.selftext"></div>
+
+  <div *ngFor="let comment of comments$ | async;">
+    <app-comment [comment]="comment"></app-comment>
   </div>
 </article>
+
+
+

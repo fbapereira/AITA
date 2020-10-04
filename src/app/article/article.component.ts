@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 import { Article } from '../shared/article';
+import { Observable } from 'rxjs';
+import { ArticleComment } from '../shared/article-comment';
+import { RedditApiService } from '../shared/reddit-api.service';
 
 @Component({
   selector: 'app-article',
@@ -10,4 +13,12 @@ import { Article } from '../shared/article';
 export class ArticleComponent {
   @Input()
   article: Article;
+
+  comments$: Observable<ArticleComment[]>;
+
+  constructor(public redditApiService: RedditApiService) { }
+
+  loadComments() {
+    this.comments$ = this.redditApiService.getComments(this.article.id);
+  }
 }

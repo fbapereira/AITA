@@ -9,11 +9,8 @@ import { ArticleComment } from '../shared/article-comment';
 export class CommentComponent implements OnInit {
   @Input()
   comment: ArticleComment;
-
   hasChildren: boolean;
   subComments: ArticleComment[];
-
-  constructor() { }
 
   ngOnInit(): void {
     this.hasChildren = !!this.comment.replies;

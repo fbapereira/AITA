@@ -1,5 +1,13 @@
-.subComment {
-    margin-left: 1rem;
-    border-left: 5px solid red;
+@import 'variables';
 
+.article-comments {
+  background: $thumb-background;
+  margin: 1rem 5rem;
+  padding: 1rem;
+  box-shadow: $thumb-shadow;
+}
+
+.article-comments,
+.sub-article-comments {
+  margin-left: 3rem;
 }

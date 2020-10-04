@@ -1,6 +1,7 @@
-<p>
+<div class="article-comments">
+  <b>{{ comment.author }} said:</b>
   {{ comment.body }}
-</p>
-<div class="subComment" *ngFor="let subComment of subComments"> 
+</div>
+<div class="sub-article-comments" *ngFor="let subComment of subComments">
   <app-comment [comment]="subComment"></app-comment>
 </div>

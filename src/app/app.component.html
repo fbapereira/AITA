@@ -4,13 +4,6 @@
   <app-article [article]="article" *ngFor="let article of articles$ | async;"></app-article>
   <button (click)="redditApiService.changeLimits(10)">Change Limits</button>
   <button (click)="redditApiService.next()">more</button>
-  <button (click)="comm()">see</button>
-  <div *ngFor="let comment of comments$ | async;">
-    <!-- {{comment.body}} -->
-    here
-    <app-comment [comment]="comment"></app-comment>
-  </div>
-  
 </div>
 <footer>
 </footer>
