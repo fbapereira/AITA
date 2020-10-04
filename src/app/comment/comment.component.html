@@ -1,0 +1,6 @@
+<p>
+  {{ comment.body }}
+</p>
+<div class="subComment" *ngFor="let subComment of subComments"> 
+  <app-comment [comment]="subComment"></app-comment>
+</div>

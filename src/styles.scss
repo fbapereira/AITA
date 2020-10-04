@@ -1,4 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.orange-square {
+  background-color: #FFF5F3;
+  border-radius: 1rem;
+  padding: 1rem
+}
+
+.badge {
+  border-radius: 2rem;
+  border: 2px solid $primary;
+  cursor: pointer;
+  color: $primary;
+  text-align: center;
 }

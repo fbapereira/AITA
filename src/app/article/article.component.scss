@@ -1,0 +1,78 @@
+@import 'variables';
+
+$font-size: 2rem;
+$font-size-medium: 2rem / 2;
+$font-size-small: 2rem / 3;
+
+h2 {
+  color: $primary;
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}
+
+.footer {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  color: $primary;
+  border-top: 1px gainsboro solid;
+  padding: 1rem;
+
+  .info {
+    display: flex;
+    flex-flow: row;
+    font-size: $font-size;
+
+    p {
+      margin: 0 .5rem;
+    }
+
+    .creation-info {
+      display: flex;
+      flex-flow: column;
+      
+      .author {
+        font-size: $font-size-medium;
+      }
+
+      .date {
+        margin-top: .3rem;
+        font-size: $font-size-small;
+        color: black;
+      }
+    }
+  }
+}
+
+article {
+  border: gainsboro 1px solid;
+  border-radius: .5rem;
+  margin: 1rem;
+  box-shadow: $thumb-shadow;
+}
+
+.self-text {
+  white-space: pre-wrap;
+  padding: 1rem;
+}
+
+.sidebar-box {
+  max-height: 10rem;
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-box .read-more { 
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; 
+  padding: 1rem 0; 
+	
+  /* "transparent" only works here because == rgba(0,0,0,0) */
+  background-image: linear-gradient(to bottom, transparent, white);
+}

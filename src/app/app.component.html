@@ -1,22 +1,17 @@
 <app-header></app-header>
-<article>
-  <h2>
-    title titleasd
-  </h2>
-  <p>
-    Blac blac ablc
-  </p>
-  <div>
-    <span>up</span>
-    <span>34k</span>
-    <span>down</span>
-    <span>comments </span>
+
+<div class="content">
+  <app-article [article]="article" *ngFor="let article of articles$ | async;"></app-article>
+  <button (click)="redditApiService.changeLimits(10)">Change Limits</button>
+  <button (click)="redditApiService.next()">more</button>
+  <button (click)="comm()">see</button>
+  <div *ngFor="let comment of comments$ | async;">
+    <!-- {{comment.body}} -->
+    here
+    <app-comment [comment]="comment"></app-comment>
   </div>
-</article>
-<div>
-  <span> previous </span>
-  show 15 articles
-  <span> next </span>
+  
 </div>
 <footer>
 </footer>
+<ngx-spinner [fullScreen]="false"></ngx-spinner>

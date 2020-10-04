@@ -1,9 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { ArticleModule } from './article/article.module';
 import { HeaderModule } from './header/header.module';
+import { SharedModule } from './shared/shared.module';
+import { NgxSpinnerModule } from "ngx-spinner";
 
+import { CommentModule } from './comment/comment.module';
+ 
 @NgModule({
   declarations: [
     AppComponent
@@ -11,6 +16,10 @@ import { HeaderModule } from './header/header.module';
   imports: [
     BrowserModule,
     HeaderModule,
+    ArticleModule,
+    CommentModule,
+    SharedModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
