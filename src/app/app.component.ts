@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { RedditApiService } from './shared/reddit-api.service';
-import { Observable, throwError } from 'rxjs';
 import { Article } from './article/article';
-import { catchError, retry, scan, map, reduce } from 'rxjs/operators';
 import { ArticleService } from './article/article.service';
-import { PaginatorService } from './paginator/paginator.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +15,5 @@ export class AppComponent {
 
   constructor(
     private articleService: ArticleService,
-  ) {
-  }
+  ) { }
 }

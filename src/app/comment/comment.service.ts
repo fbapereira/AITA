@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { ArticleComment } from './article-comment';
 import { switchMap, map, pluck } from 'rxjs/operators';
-import { RedditApiService } from '../shared/reddit-api.service';
 import { environment } from 'src/environments/environment';
+
+import { RedditApiService } from '../shared/reddit-api.service';
+
+import { ArticleComment } from './article-comment';
 
 @Injectable({
   providedIn: 'root'

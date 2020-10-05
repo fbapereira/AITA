@@ -6,15 +6,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PaginatorService {
+  //get set
   public paginationIndex: string;
   public limit$ = new BehaviorSubject<number>(environment.paginatorLimitDefault);
   public pagination$ = new BehaviorSubject<number>(0);
-
-  constructor() { }
-
-  public hasPreviousPage(): boolean {
-    return !!this.paginationIndex;
-  }
 
   public resetPagination() {
     this.paginationIndex = '';

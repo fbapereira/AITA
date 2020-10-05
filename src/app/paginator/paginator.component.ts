@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { PaginatorService } from './paginator.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { PaginatorService } from './paginator.service';
 })
 export class PaginatorComponent {
 
-  constructor(public paginatorService: PaginatorService) {
-    
-   }
+  constructor(
+    public paginatorService: PaginatorService
+  ) { }
 }

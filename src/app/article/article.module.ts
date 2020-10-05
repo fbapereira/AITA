@@ -1,12 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ArticleComponent } from './article.component';
+import { NgModule } from '@angular/core';
 
-import { SharedModule } from './../shared/shared.module';
 import { CommentModule } from '../comment/comment.module';
 
+import { SharedModule } from './../shared/shared.module';
+import { ArticleComponent } from './article.component';
+
 @NgModule({
-  declarations: [ArticleComponent, ],
+  declarations: [
+    ArticleComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

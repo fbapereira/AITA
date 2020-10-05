@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, combineLatest, BehaviorSubject } from 'rxjs';
-import { Article } from './article';
-import { catchError, switchMap, filter, pluck, tap, map } from 'rxjs/operators';
-import { SubReddit } from '../shared/sub-reddit';
 import { HttpClient } from '@angular/common/http';
-import { RedditApiService } from '../shared/reddit-api.service';
-
-import {PaginatorService} from '../paginator/paginator.service';
+import { Injectable } from '@angular/core';
+import { Observable, of, combineLatest } from 'rxjs';
+import { catchError, switchMap, filter, pluck, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+
+import { PaginatorService } from '../paginator/paginator.service';
+import { RedditApiService } from '../shared/reddit-api.service';
+import { SubReddit } from '../shared/sub-reddit';
+
+import { Article } from './article';
 
 @Injectable({
   providedIn: 'root'

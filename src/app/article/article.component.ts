@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-
-import { Article } from './article';
 import { Observable } from 'rxjs';
+
 import { ArticleComment } from '../comment/article-comment';
 import { CommentService } from '../comment/comment.service';
+
+import { Article } from './article';
 
 @Component({
   selector: 'app-article',
@@ -17,7 +18,9 @@ export class ArticleComponent {
   comments$: Observable<ArticleComment[]>;
   commentsLoaded = false;
 
-  constructor(public commentService: CommentService) { }
+  constructor (
+    public commentService: CommentService,
+  ) { }
 
   loadComments() {
     this.commentsLoaded = true;

@@ -1,14 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, combineLatest, EMPTY, iif, of, empty } from 'rxjs';
-import { pluck, map, tap, switchMap, filter, catchError, mergeMap, shareReplay, first } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
-import { Article } from '../article/article';
-import { ArticleComment } from '../comment/article-comment';
 import { SubReddit } from './sub-reddit';
 
-import { ArticleService } from '../article/article.service';
-import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
