@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 
-import { Article } from '../shared/article';
+import { Article } from './article';
 import { Observable } from 'rxjs';
-import { ArticleComment } from '../shared/article-comment';
-import { RedditApiService } from '../shared/reddit-api.service';
+import { ArticleComment } from '../comment/article-comment';
+import { CommentService } from '../comment/comment.service';
 
 @Component({
   selector: 'app-article',
@@ -17,10 +17,10 @@ export class ArticleComponent {
   comments$: Observable<ArticleComment[]>;
   commentsLoaded = false;
 
-  constructor(public redditApiService: RedditApiService) { }
+  constructor(public commentService: CommentService) { }
 
   loadComments() {
     this.commentsLoaded = true;
-    this.comments$ = this.redditApiService.getComments(this.article.id);
+    this.comments$ = this.commentService.getComments(this.article.id);
   }
 }

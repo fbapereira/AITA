@@ -3,15 +3,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RedditApiService } from './reddit-api.service';
 import { LoaderComponent } from './loader/loader.component';
-import { WithLoadingPipe } from './with-loading.pipe';
 
 @NgModule({
-  declarations: [LoaderComponent, WithLoadingPipe],
+  declarations: [LoaderComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
   ],
   providers:[RedditApiService],
-  exports: [ LoaderComponent, WithLoadingPipe ]
+  exports: [ LoaderComponent ]
 })
 export class SharedModule { }
