@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { RedditApiService } from '../shared/reddit-api.service';
-import { ArticleService } from '../article/article.service';
 import { PaginatorService } from './paginator.service';
 
 @Component({
@@ -10,5 +8,7 @@ import { PaginatorService } from './paginator.service';
 })
 export class PaginatorComponent {
 
-  constructor(public paginatorService: PaginatorService) { }
+  constructor(public paginatorService: PaginatorService) {
+    
+   }
 }

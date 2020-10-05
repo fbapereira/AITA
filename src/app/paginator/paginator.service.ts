@@ -12,6 +12,10 @@ export class PaginatorService {
 
   constructor() { }
 
+  public hasPreviousPage(): boolean {
+    return !!this.paginationIndex;
+  }
+
   public resetPagination() {
     this.paginationIndex = '';
   }

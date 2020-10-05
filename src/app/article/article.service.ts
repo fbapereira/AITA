@@ -21,7 +21,6 @@ export class ArticleService {
     private paginatorService: PaginatorService,
   ) { }
 
-  // reset pagination
   public articles$: Observable<Article[]> = this.redditApiService.subRedditInfo$.pipe(
     tap(() => this.paginatorService.resetPagination()),
     catchError(() => of(null)),
@@ -36,9 +35,7 @@ export class ArticleService {
       this.paginatorService.pagination$,
     ]).pipe(
       switchMap(([limit, pagination ]) => {
-        let paginationParameter = (pagination > 0 ? '&after=' : '&before=') + this.paginatorService.paginationIndex;
-        paginationParameter =  this.paginatorService.paginationIndex ? paginationParameter : '';
-        return this.http.get(`${ this.redditUrl }${ subRedditInfo.url }.json?limit=${ limit }${ paginationParameter }`);
+        return this.http.get(`${ this.redditUrl }${ subRedditInfo.url }.json?limit=${ limit }${ this.getPaginationParameter(pagination) }`);
       }),
       filter((data) => !!data),
       pluck('data'),
@@ -46,5 +43,12 @@ export class ArticleService {
       pluck('children'),
       map((data: any) => data.map((value) => value.data as Article)),
     );
+  }
+
+  private getPaginationParameter(paginationDirection: number) {
+    if (!this.paginatorService.paginationIndex) {
+      return '';
+    }
+    return (paginationDirection > 0 ? '&after=' : '&before=') + this.paginatorService.paginationIndex;
   }
 }
