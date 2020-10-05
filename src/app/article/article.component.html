@@ -15,14 +15,27 @@
         {{ article.title }}
       </h2>
       <div class="self-text" [innerHtml]="article.selftext"></div>
-      <button (click)="loadComments()"> Load Comments ({{ article.num_comments }})</button>
+      <div class="footer-action">
+        <button [disabled]="commentsLoaded || article.num_comments === 0" (click)="loadComments()"> Load Comments ({{ article.num_comments }})</button>
+      </div>
     </div>
   </div>
 
-  <div *ngFor="let comment of comments$ | async;">
-    <app-comment [comment]="comment"></app-comment>
+  <div *ngIf="comments$ | withLoading | async as comments">
+    <ng-template [ngIf]="comments.value">
+      <div *ngFor="let comment of comments$ | async">
+        <app-comment [comment]="comment"></app-comment>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="comments.error">
+      Could not retrieve data
+    </ng-template>
+    <ng-template [ngIf]="comments.loading">
+      <app-loader></app-loader>
+    </ng-template>
   </div>
 </article>
+
 
 
 

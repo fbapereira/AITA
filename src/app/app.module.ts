@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { ArticleModule } from './article/article.module';
 import { HeaderModule } from './header/header.module';
 import { SharedModule } from './shared/shared.module';
-import { NgxSpinnerModule } from "ngx-spinner";
 
 import { CommentModule } from './comment/comment.module';
  
@@ -19,7 +18,6 @@ import { CommentModule } from './comment/comment.module';
     ArticleModule,
     CommentModule,
     SharedModule,
-    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

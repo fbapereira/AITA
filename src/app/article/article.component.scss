@@ -57,6 +57,13 @@ article {
       .self-text {
         white-space: pre-wrap;
       }
+
+      .footer-action {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+      }
     }
   }
 }

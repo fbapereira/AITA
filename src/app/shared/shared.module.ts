@@ -2,17 +2,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RedditApiService } from './reddit-api.service';
-import { SafeHtmlPipe } from './safe-html.pipe';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { LoaderComponent } from './loader/loader.component';
+import { WithLoadingPipe } from './with-loading.pipe';
 
 @NgModule({
-  declarations: [SafeHtmlPipe],
+  declarations: [LoaderComponent, WithLoadingPipe],
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxSpinnerModule,
   ],
   providers:[RedditApiService],
-  exports: [SafeHtmlPipe]
+  exports: [ LoaderComponent, WithLoadingPipe ]
 })
 export class SharedModule { }

@@ -1,10 +1,17 @@
 <app-header></app-header>
 
 <div class="content">
-  <app-article [article]="article" *ngFor="let article of articles$ | async;"></app-article>
+  <div *ngIf="articles$ | async as articles; else loading">
+    <app-article [article]="article" *ngFor="let article of articles;"></app-article>
+  </div>
+  <ng-template #loading>
+    <app-loader></app-loader>
+  </ng-template>
+
   <button (click)="redditApiService.changeLimits(10)">Change Limits</button>
   <button (click)="redditApiService.next()">more</button>
 </div>
 <footer>
 </footer>
-<ngx-spinner [fullScreen]="false"></ngx-spinner>
+
+

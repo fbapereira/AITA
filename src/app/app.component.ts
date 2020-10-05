@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import { RedditApiService } from './shared/reddit-api.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Article } from './shared/article';
+import { catchError, retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,10 @@ export class AppComponent {
 
   articles$: Observable<Article[]> = this.redditApiService.articles$;
 
-  constructor(public redditApiService: RedditApiService) {}
+  errorObject = null;
+
+  constructor(
+    public redditApiService: RedditApiService,
+  ) {
+  }
 }

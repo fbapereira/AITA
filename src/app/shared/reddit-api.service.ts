@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NgxSpinnerService } from "ngx-spinner";
-import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { pluck, map, tap, switchMap, shareReplay} from 'rxjs/operators';
+import { Observable, BehaviorSubject, combineLatest, EMPTY, iif, of, empty } from 'rxjs';
+import { pluck, map, tap, switchMap, filter, catchError, mergeMap, shareReplay } from 'rxjs/operators';
 
 import { Article } from './article';
 import { ArticleComment } from './article-comment';
+import { SubReddit } from './sub-reddit';
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +16,26 @@ export class RedditApiService {
   private after$ = new BehaviorSubject<string>('');
   private after: string;
 
-  public articles$: Observable<Article[]> = combineLatest([
-    this.subRedditName$,
-    this.limit$,
-    this.after$,
-  ]).pipe(
-    tap(() => this.spinner.show()),
-    switchMap(([ subRedditName, limit, after ]) => this.http.get(`https://www.reddit.com/r/${ subRedditName }.json?limit=${ limit - 1 }${ after ? '&after=' + after : ''}`)),
-    pluck('data'),
-    tap((data: any) => this.after = data.after),
-    pluck('children'),
-    map((data: any) => data.map((value) => value.data as Article)),
-    tap(() => this.spinner.hide()),
+
+  public subRedditInfo$: Observable<SubReddit> = this.subRedditName$.pipe(
+    switchMap((subRedditName) => this.http.get(`https://www.reddit.com/r/${ subRedditName }/about.json`).pipe(
+      map((value: any) => value.data as SubReddit),
+      catchError(() => of(null)),
+    )),
+    shareReplay(),
   );
+
+  public articles$: Observable<Article[]> = this.subRedditInfo$.pipe(
+    catchError(() => of(null)),
+    mergeMap((subRedditInfo: SubReddit) =>
+      iif(() => !subRedditInfo,
+        of([]),
+        this.getArticles(subRedditInfo),
+  ),
+));
 
   constructor(
     private http: HttpClient,
-    private spinner: NgxSpinnerService,
   ) { }
 
   public changeLimits(newLimit: number) {
@@ -41,8 +44,8 @@ export class RedditApiService {
   }
 
   public changeSubReddit(subReddit: string) {
-   this.after = '';
-   this.subRedditName$.next(subReddit);
+    this.after = '';
+    this.subRedditName$.next(subReddit);
   }
 
   public next(): void {
@@ -50,12 +53,27 @@ export class RedditApiService {
   }
 
   public getComments(articleId: string): Observable<ArticleComment[]> {
-    alert('called');
     return this.subRedditName$.pipe(
       switchMap((subRedditName) => this.http.get(`https://www.reddit.com/r/${ subRedditName }/comments/${ articleId }.json`)),
       map((data: any[]) => data && data.length > 1 ? data[1] : data),
       pluck('data', 'children'),
       map((data: any[]) => data.map((value) => value.data as ArticleComment)),
+    );
+  }
+
+  private getArticles(subRedditInfo: SubReddit): Observable<Article[]> {
+    return combineLatest([
+      this.limit$,
+      this.after$,
+    ]).pipe(
+      switchMap(([limit, after ]) => {
+        return this.http.get(`https://www.reddit.com${ subRedditInfo.url }.json?limit=${ limit - 1 }${ after ? '&after=' + after : ''}`);
+      }),
+      filter((data) => !!data),
+      pluck('data'),
+      tap((data: any) => this.after = data.after),
+      pluck('children'),
+      map((data: any) => data.map((value) => value.data as Article)),
     );
   }
 }

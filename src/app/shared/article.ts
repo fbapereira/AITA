@@ -7,6 +7,7 @@ export class Article {
   upvote_ratio: number;
   stickied: boolean;
   num_comments: number;
+  thumbnail: string;
 }
 
 // thumbnail
