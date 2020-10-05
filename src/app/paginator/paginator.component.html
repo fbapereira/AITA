@@ -1,0 +1,9 @@
+<div class="paginator">
+  <button class="button-previous" (click)="redditApiService.previous()">Previous</button>
+  <select  #mySelect (change)='redditApiService.changeLimits(mySelect.value)'>
+    <option>5</option>
+    <option>10</option>
+    <option>25</option>
+  </select>
+  <button class="button-next" (click)="redditApiService.next()">Next</button>
+</div>

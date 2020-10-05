@@ -17,3 +17,23 @@ button {
     background: lighten($primary, 20%);
   }
 }
+
+select,
+input {
+  border: 1px solid gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: inline-block;
+
+}
+
+input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px 20px;
+}
+
+select {
+  width: 5rem;
+  height: 2rem;
+}

@@ -1,0 +1,18 @@
+.paginator {
+  widows: 100%;
+  display: flex;
+  justify-content: center;
+
+  .button-previous,
+  .button-next {
+    width: 7rem;
+  }
+
+  .button-previous {
+    border-radius: 2rem 0 0 2rem;
+  }
+
+  .button-next {
+    border-radius: 0 2rem 2rem 0;
+  }
+}

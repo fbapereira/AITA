@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RedditApiService } from './shared/reddit-api.service';
 import { Observable, throwError } from 'rxjs';
 import { Article } from './shared/article';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, scan, map, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,6 @@ import { catchError, retry } from 'rxjs/operators';
 export class AppComponent {
 
   articles$: Observable<Article[]> = this.redditApiService.articles$;
-
-  errorObject = null;
 
   constructor(
     public redditApiService: RedditApiService,

@@ -7,6 +7,7 @@ import { HeaderModule } from './header/header.module';
 import { SharedModule } from './shared/shared.module';
 
 import { CommentModule } from './comment/comment.module';
+import { PaginatorModule } from './paginator/paginator.module';
  
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CommentModule } from './comment/comment.module';
     ArticleModule,
     CommentModule,
     SharedModule,
+    PaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

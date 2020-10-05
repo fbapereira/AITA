@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, combineLatest, EMPTY, iif, of, empty } from 'rxjs';
-import { pluck, map, tap, switchMap, filter, catchError, mergeMap, shareReplay } from 'rxjs/operators';
+import { pluck, map, tap, switchMap, filter, catchError, mergeMap, shareReplay, first } from 'rxjs/operators';
 
 import { Article } from './article';
 import { ArticleComment } from './article-comment';
@@ -13,8 +13,8 @@ import { SubReddit } from './sub-reddit';
 export class RedditApiService {
   public subRedditName$ = new BehaviorSubject<string>('AmITheAsshole');
   public limit$ = new BehaviorSubject<number>(5);
-  private after$ = new BehaviorSubject<string>('');
-  private after: string;
+  private pagination$ = new BehaviorSubject<number>(0);
+  private paginationIndex: string;
 
 
   public subRedditInfo$: Observable<SubReddit> = this.subRedditName$.pipe(
@@ -22,17 +22,14 @@ export class RedditApiService {
       map((value: any) => value.data as SubReddit),
       catchError(() => of(null)),
     )),
-    shareReplay(),
   );
 
   public articles$: Observable<Article[]> = this.subRedditInfo$.pipe(
     catchError(() => of(null)),
-    mergeMap((subRedditInfo: SubReddit) =>
-      iif(() => !subRedditInfo,
-        of([]),
+    switchMap((subRedditInfo: SubReddit) => !subRedditInfo ?
+        of([]) :
         this.getArticles(subRedditInfo),
-  ),
-));
+  ));
 
   constructor(
     private http: HttpClient,
@@ -40,16 +37,19 @@ export class RedditApiService {
 
   public changeLimits(newLimit: number) {
     this.limit$.next(newLimit);
-    this.after$.next(this.after);
   }
 
   public changeSubReddit(subReddit: string) {
-    this.after = '';
+    this.paginationIndex = '';
     this.subRedditName$.next(subReddit);
   }
 
   public next(): void {
-    this.after$.next(this.after);
+    this.pagination$.next(1);
+  }
+
+  public previous(): void {
+    this.pagination$.next(-1);
   }
 
   public getComments(articleId: string): Observable<ArticleComment[]> {
@@ -64,14 +64,16 @@ export class RedditApiService {
   private getArticles(subRedditInfo: SubReddit): Observable<Article[]> {
     return combineLatest([
       this.limit$,
-      this.after$,
+      this.pagination$,
     ]).pipe(
-      switchMap(([limit, after ]) => {
-        return this.http.get(`https://www.reddit.com${ subRedditInfo.url }.json?limit=${ limit - 1 }${ after ? '&after=' + after : ''}`);
+      switchMap(([limit, pagination ]) => {
+        let paginationParameter = (pagination > 0 ? '&after=' : '&before=') + this.paginationIndex;
+        paginationParameter =  this.paginationIndex ? paginationParameter : '';
+        return this.http.get(`https://www.reddit.com${ subRedditInfo.url }.json?limit=${ limit }${ paginationParameter }`);
       }),
       filter((data) => !!data),
       pluck('data'),
-      tap((data: any) => this.after = data.after),
+      tap((data: any) => this.paginationIndex = data.after),
       pluck('children'),
       map((data: any) => data.map((value) => value.data as Article)),
     );
