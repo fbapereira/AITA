@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaginatorService {
   public paginationIndex: string;
-  public limit$ = new BehaviorSubject<number>(5);
+  public limit$ = new BehaviorSubject<number>(environment.paginatorLimitDefault);
   public pagination$ = new BehaviorSubject<number>(0);
 
   constructor() { }

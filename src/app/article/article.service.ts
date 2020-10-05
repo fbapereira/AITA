@@ -7,11 +7,13 @@ import { HttpClient } from '@angular/common/http';
 import { RedditApiService } from '../shared/reddit-api.service';
 
 import {PaginatorService} from '../paginator/paginator.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
+  private readonly redditUrl = environment.redditUrl;
 
   constructor (
     private http: HttpClient,
@@ -36,7 +38,7 @@ export class ArticleService {
       switchMap(([limit, pagination ]) => {
         let paginationParameter = (pagination > 0 ? '&after=' : '&before=') + this.paginatorService.paginationIndex;
         paginationParameter =  this.paginatorService.paginationIndex ? paginationParameter : '';
-        return this.http.get(`https://www.reddit.com${ subRedditInfo.url }.json?limit=${ limit }${ paginationParameter }`);
+        return this.http.get(`${ this.redditUrl }${ subRedditInfo.url }.json?limit=${ limit }${ paginationParameter }`);
       }),
       filter((data) => !!data),
       pluck('data'),
