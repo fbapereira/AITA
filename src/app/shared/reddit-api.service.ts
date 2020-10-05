@@ -11,6 +11,8 @@ import { SubReddit } from './sub-reddit';
   providedIn: 'root'
 })
 export class RedditApiService {
+  // break it down
+
   public subRedditName$ = new BehaviorSubject<string>('AmITheAsshole');
   public limit$ = new BehaviorSubject<number>(5);
   private pagination$ = new BehaviorSubject<number>(0);

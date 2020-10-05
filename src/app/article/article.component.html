@@ -20,20 +20,16 @@
       </div>
     </div>
   </div>
-
-  <div *ngIf="comments$ | withLoading | async as comments">
-    <ng-template [ngIf]="comments.value">
-      <div *ngFor="let comment of comments$ | async">
+  <ng-container *ngIf="!!commentsLoaded">
+    <div *ngIf="comments$ | async as comments; else loading">
+      <div *ngFor="let comment of comments">
         <app-comment [comment]="comment"></app-comment>
       </div>
-    </ng-template>
-    <ng-template [ngIf]="comments.error">
-      Could not retrieve data
-    </ng-template>
-    <ng-template [ngIf]="comments.loading">
+    </div>
+    <ng-template #loading>
       <app-loader></app-loader>
     </ng-template>
-  </div>
+  </ng-container>
 </article>
 
 
