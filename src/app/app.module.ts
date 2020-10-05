@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ArticleModule } from './article/article.module';
 import { CommentModule } from './comment/comment.module';
 import { HeaderModule } from './header/header.module';
-import { PaginatorModule } from './paginator/paginator.module';
+import { PaginationModule } from './pagination/pagination.module';
 import { SharedModule } from './shared/shared.module';
  
 @NgModule({
@@ -18,7 +18,7 @@ import { SharedModule } from './shared/shared.module';
     ArticleModule,
     CommentModule,
     SharedModule,
-    PaginatorModule,
+    PaginationModule,
   ],
   bootstrap: [
     AppComponent,

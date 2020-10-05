@@ -5,10 +5,10 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PaginatorService {
+export class PaginationService {
   //get set
   public paginationIndex: string;
-  public limit$ = new BehaviorSubject<number>(environment.paginatorLimitDefault);
+  public limit$ = new BehaviorSubject<number>(environment.paginationLimitDefault);
   public pagination$ = new BehaviorSubject<number>(0);
 
   public resetPagination() {

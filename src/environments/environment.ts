@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  paginatorLimitDefault: 2,
+  paginationLimitDefault: 2,
   redditUrl: 'https://www.reddit.com',
 };
 

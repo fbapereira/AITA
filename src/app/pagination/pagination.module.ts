@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { PaginatorComponent } from './paginator.component';
+import { PaginationComponent } from './pagination.component';
 
 @NgModule({
   declarations: [
-    PaginatorComponent
+    PaginationComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    PaginatorComponent
+    PaginationComponent
   ],
 })
-export class PaginatorModule { }
+export class PaginationModule { }
