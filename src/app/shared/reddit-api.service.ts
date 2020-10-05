@@ -10,7 +10,7 @@ import { SubReddit } from './sub-reddit';
   providedIn: 'root'
 })
 export class RedditApiService {
-  public subRedditName$ = new BehaviorSubject<string>('AmITheAsshole');
+  public subRedditName$ = new BehaviorSubject<string>('niceguys');
   private readonly redditUrl = environment.redditUrl;
 
   public subRedditInfo$: Observable<SubReddit> = this.subRedditName$.pipe(

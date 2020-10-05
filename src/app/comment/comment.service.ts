@@ -21,7 +21,7 @@ export class CommentService {
 
   public getComments(articleId: string): Observable<ArticleComment[]> {
     return this.redditApiService.subRedditInfo$.pipe(
-      switchMap((subRedditInfo) => this.http.get(`${ this.redditUrl }${ subRedditInfo.url }/comments/${ articleId }.json`)),
+      switchMap((subRedditInfo) => this.http.get(`${ this.redditUrl }${ subRedditInfo.url }comments/${ articleId }.json`)),
       map((data: any[]) => data && data.length > 1 ? data[1] : data),
       pluck('data', 'children'),
       map((data: any[]) => data.map((value) => value.data as ArticleComment)),

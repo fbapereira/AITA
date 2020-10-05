@@ -8,6 +8,7 @@ export class Article {
   stickied: boolean;
   num_comments: number;
   thumbnail: string;
+  imageUrl: string;
 }
 
 // thumbnail

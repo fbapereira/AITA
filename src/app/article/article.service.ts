@@ -42,7 +42,14 @@ export class ArticleService {
       pluck('data'),
       tap((data: any) => this.paginationService.paginationIndex = data.after),
       pluck('children'),
-      map((data: any) => data.map((value) => value.data as Article)),
+      map((data: any) => data.map((value) => {
+        return {
+          ...value.data,
+          imageUrl: value.data.url,
+          created: new Date(value.data.created * 1000),
+          permalink:  environment.redditUrl + value.data.permalink,
+        } as Article;
+      })),
     );
   }
 

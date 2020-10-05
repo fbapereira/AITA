@@ -8,12 +8,13 @@
           <p class="date"> {{ article.created | date }}  </p>
         </div>
       </div>
-      <span class="comments"> {{ article.num_comments }} comments </span>
+      <a [href]="article.permalink" target="_blank" class="comments"> Go To </a>
     </div>
     <div class="content">
       <h2>
         {{ article.title }}
       </h2>
+      <img *ngIf="article.imageUrl" [src]="article.imageUrl"/>
       <div class="self-text" [innerHtml]="article.selftext"></div>
       <div class="footer-action">
         <button [disabled]="commentsLoaded || article.num_comments === 0" (click)="loadComments()"> Load Comments ({{ article.num_comments }})</button>

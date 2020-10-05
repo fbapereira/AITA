@@ -48,11 +48,28 @@ article {
 
       .comments {
         font-size: $font-size-medium;
+        text-decoration: none;
+        cursor: pointer;
+        color: $primary;
       }
     }
 
     .content {
       margin: 2rem;
+
+      img {
+        width: 50%;
+        margin: auto;
+        display: block;
+
+        @media all and (max-width: 992px) {
+          width: 70%;
+        }
+
+        @media all and (max-width: 600px) {
+          width: 100%;
+        }
+      }
 
       .self-text {
         white-space: pre-wrap;
