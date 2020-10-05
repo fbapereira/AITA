@@ -6,6 +6,7 @@ export const environment = {
   production: true,
   paginationLimitDefault: 2,
   redditUrl: 'https://www.reddit.com',
+  defaultSubReddit: 'nhaa',
 };
 
 /*

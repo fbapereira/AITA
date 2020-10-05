@@ -11,7 +11,7 @@ import { ArticleService } from './article/article.service';
 })
 export class AppComponent {
 
-  articles$: Observable<Article[]> = this.articleService.articles$;
+  public articles$: Observable<Article[]> = this.articleService.articles$;
 
   constructor(
     private articleService: ArticleService,

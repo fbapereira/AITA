@@ -5,10 +5,10 @@ import { CommentComponent } from './comment.component';
 
 @NgModule({
   declarations: [
-    CommentComponent
+    CommentComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     CommentComponent,

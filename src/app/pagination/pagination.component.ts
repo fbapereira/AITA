@@ -8,7 +8,6 @@ import { PaginationService } from './pagination.service';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent {
-
   constructor(
     public paginationService: PaginationService
   ) { }

@@ -1,6 +1,12 @@
 <div class="pagination">
-  <button class="button-previous" (click)="paginationService.previous()">Previous</button>
-  <select  #mySelect (change)='paginationService.changeLimits(mySelect.value)'>
+  <button
+    class="button-previous"
+    (click)="paginationService.previous()"
+  >Previous</button>
+  <select
+    #mySelect
+    (change)='paginationService.changeLimits(mySelect.value)'
+  >
     <option>5</option>
     <option>10</option>
     <option>25</option>

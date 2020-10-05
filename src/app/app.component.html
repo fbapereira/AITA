@@ -2,7 +2,10 @@
 
 <div class="content">
   <div *ngIf="articles$ | async as articles; else loading">
-    <app-article [article]="article" *ngFor="let article of articles;"></app-article>
+    <app-article
+      [article]="article"
+      *ngFor="let article of articles;"
+    ></app-article>
   </div>
   <ng-template #loading>
     <app-loader></app-loader>

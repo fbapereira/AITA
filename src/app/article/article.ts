@@ -41,4 +41,7 @@ export class Article {
    * post's main image
    */
   imageUrl: string;
+
+  /** link to the post at reddit */
+  permalink: string;
 }
