@@ -8,7 +8,7 @@ import { ArticleComponent } from './article.component';
 
 @NgModule({
   declarations: [
-    ArticleComponent
+    ArticleComponent,
   ],
   imports: [
     CommonModule,

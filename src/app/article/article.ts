@@ -1,20 +1,44 @@
+/**
+ * Posts on Reddit
+ */
 export class Article {
+  /**
+   * post's id
+   */
   id: string;
+
+  /**
+   * post's author
+   */
   author: string;
+
+  /**
+   * post creation date
+   */
   created: Date;
+
+  /**
+   * post content
+   */
   selftext: string;
+
+  /**
+   * post main line
+   */
   title: string;
+
+  /**
+   * reason between up vote and down votes
+   */
   upvote_ratio: number;
-  stickied: boolean;
+
+  /**
+   * post's comments number
+   */
   num_comments: number;
-  thumbnail: string;
+
+  /**
+   * post's main image
+   */
   imageUrl: string;
 }
-
-// thumbnail
-// • created (as	readable	date)
-// • num_comments
-// • author
-// • score
-// • permalink (as	a	link)
-// • title

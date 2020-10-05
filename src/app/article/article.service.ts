@@ -14,7 +14,21 @@ import { Article } from './article';
   providedIn: 'root'
 })
 export class ArticleService {
+  /**
+   * reddit base url
+   */
   private readonly redditUrl = environment.redditUrl;
+
+  /**
+   * article of the current subReddit loaded
+   */
+  public articles$: Observable<Article[]> = this.redditApiService.subRedditInfo$.pipe(
+    tap(() => this.paginationService.resetPagination()),
+    catchError(() => of(null)),
+    switchMap((subRedditInfo: SubReddit) => !subRedditInfo ? //if no valid subReddit return []
+        of([]) :
+        this.getArticles(subRedditInfo),
+  ));
 
   constructor (
     private http: HttpClient,
@@ -22,14 +36,10 @@ export class ArticleService {
     private paginationService: PaginationService,
   ) { }
 
-  public articles$: Observable<Article[]> = this.redditApiService.subRedditInfo$.pipe(
-    tap(() => this.paginationService.resetPagination()),
-    catchError(() => of(null)),
-    switchMap((subRedditInfo: SubReddit) => !subRedditInfo ?
-        of([]) :
-        this.getArticles(subRedditInfo),
-  ));
-
+  /**
+   * get articles from the current subReddit
+   * @param subRedditInfo current subReddit
+   */
   private getArticles(subRedditInfo: SubReddit): Observable<Article[]> {
     return combineLatest([
       this.paginationService.limit$,
@@ -53,6 +63,13 @@ export class ArticleService {
     );
   }
 
+  /**
+   * transform pagination direction into parameter
+   * when:
+   *  1 - after
+   *  0 - before
+   * @param paginationDirection pagination's direction
+   */
   private getPaginationParameter(paginationDirection: number) {
     if (!this.paginationService.paginationIndex) {
       return '';

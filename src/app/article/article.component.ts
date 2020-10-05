@@ -12,16 +12,29 @@ import { Article } from './article';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent {
+  /**
+   * article to be shown
+   */
   @Input()
-  article: Article;
+  public article: Article;
 
-  comments$: Observable<ArticleComment[]>;
-  commentsLoaded = false;
+  /**
+   * comments' observable
+   */
+  public comments$: Observable<ArticleComment[]>;
+
+  /**
+   * true when there are comments to shown
+   */
+  public commentsLoaded = false;
 
   constructor (
     public commentService: CommentService,
   ) { }
 
+  /**
+   * load comment of the current article
+   */
   loadComments() {
     this.commentsLoaded = true;
     this.comments$ = this.commentService.getComments(this.article.id);
