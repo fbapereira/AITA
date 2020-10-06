@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ArticleComment } from '../comment/article-comment';
-import { CommentService } from '../comment/comment.service';
+import { ArticleComment } from '../article-comment/article-comment';
+import { ArticleCommentService } from '../article-comment/article-comment.service';
 
 import { Article } from './article';
 
@@ -29,7 +29,7 @@ export class ArticleComponent {
   public commentsLoaded = false;
 
   constructor (
-    public commentService: CommentService,
+    public articleCommentService: ArticleCommentService,
   ) { }
 
   /**
@@ -37,6 +37,6 @@ export class ArticleComponent {
    */
   public loadComments() {
     this.commentsLoaded = true;
-    this.comments$ = this.commentService.getComments(this.article.id);
+    this.comments$ = this.articleCommentService.getComments(this.article.id);
   }
 }

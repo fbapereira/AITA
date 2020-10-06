@@ -3,5 +3,5 @@
   {{ comment.body }}
 </div>
 <div class="sub-article-comments" *ngFor="let subComment of subComments">
-  <app-comment [comment]="subComment"></app-comment>
+  <app-article-comment [comment]="subComment"></app-article-comment>
 </div>

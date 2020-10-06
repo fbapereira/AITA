@@ -11,7 +11,7 @@ import { ArticleComment } from './article-comment';
 @Injectable({
   providedIn: 'root'
 })
-export class CommentService {
+export class ArticleCommentService {
   private readonly redditUrl = environment.redditUrl;
 
   constructor (
