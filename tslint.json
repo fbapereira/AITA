@@ -115,5 +115,8 @@
       "document",
       "location"
     ]
+  },
+  "linterOptions": {
+    "exclude": ["src/testing/*.*"]
   }
 }

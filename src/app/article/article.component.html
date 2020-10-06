@@ -1,5 +1,5 @@
 <article>
-  <div class="article">
+  <div class="article" [ngClass]="{ 'comments-loaded' : commentsLoaded }">
     <div class="thumb-header">
       <div class="info">
         <p class="ratio"> {{ (article.upvote_ratio * 10) | number:'1.1-1' }} </p>
@@ -27,7 +27,7 @@
   <ng-container *ngIf="!!commentsLoaded">
     <div *ngIf="comments$ | async as comments; else loading">
       <div *ngFor="let comment of comments">
-        <app-comment [comment]="comment"></app-comment>
+        <app-article-comment [comment]="comment"></app-article-comment>
       </div>
     </div>
     <ng-template #loading>

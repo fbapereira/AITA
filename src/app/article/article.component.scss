@@ -11,11 +11,14 @@ article {
     background: $article-background;
     box-shadow: $article-shadow;
     padding: 1rem;
-    transform: perspective(50rem) rotateY(-3deg);
     transition: transform 1s ease 0s;
 
-    &:hover {
-      transform: perspective(0) rotateY(-4deg);
+    &:not(.comments-loaded) {
+      transform: perspective(50rem) rotateY(-3deg);
+
+      &:hover {
+        transform: perspective(0) rotateY(-4deg);
+      }
     }
 
     .thumb-header {

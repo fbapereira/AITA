@@ -36,7 +36,7 @@ export class ArticleComponent {
    * load comment of the current article
    */
   public loadComments() {
-    this.commentsLoaded = true;
     this.comments$ = this.articleCommentService.getComments(this.article.id);
+    this.commentsLoaded = true;
   }
 }

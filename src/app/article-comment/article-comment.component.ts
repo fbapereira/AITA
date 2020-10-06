@@ -8,13 +8,24 @@ import { ArticleComment } from './article-comment';
   styleUrls: ['./article-comment.component.scss']
 })
 export class ArticleCommentComponent implements OnInit {
+  /**
+   * comment to be shown
+   */
   @Input()
-  comment: ArticleComment;
-  hasChildren: boolean;
-  subComments: ArticleComment[];
+  public comment: ArticleComment;
+
+  /**
+   * true if there are replies to the comment
+   */
+  public hasChildren: boolean;
+
+  /**
+   * sub comments / replies to the target comment
+   */
+  public subComments: ArticleComment[];
 
   ngOnInit(): void {
-    this.hasChildren = !!this.comment.replies;
+    this.hasChildren = !!this.comment && !!this.comment.replies;
     if (this.hasChildren) {
       this.subComments = this.comment.replies.data.children.map((value) => value.data as ArticleComment);
     }
