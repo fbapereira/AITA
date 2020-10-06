@@ -1,10 +1,10 @@
 @import 'variables';
 
 .article-comments {
-  background: $thumb-background;
+  background: $article-background;
+  box-shadow: $article-shadow;
   margin: 1rem 5rem;
   padding: 1rem;
-  box-shadow: $thumb-shadow;
 }
 
 .article-comments,

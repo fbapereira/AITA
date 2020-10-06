@@ -1,5 +1,21 @@
-$primary: #FA5738;
+$primary: #fa5738;
+$background-color: linear-gradient(0deg, rgba(255, 203, 1, 1) 0%, rgba(253, 176, 0, 1) 100%);
 
-// Thumb
-$thumb-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, .3);
-$thumb-background: #fff;
+// Article
+$article-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, .3);
+$article-background: #fff;
+
+// header
+$header-font-color: #fff;
+$header-logo-size: 5rem;
+
+// loader
+$loader-color: #fff;
+
+//button
+$button-color: $primary;
+$button-color-disabled: lighten($button-color, 20%);
+$button-color-font: #fff;
+
+// input
+$input-border-color: #888;

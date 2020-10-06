@@ -8,19 +8,25 @@ article {
   margin: 5rem;
 
   .article {
-    background: $thumb-background;
+    background: $article-background;
+    box-shadow: $article-shadow;
     padding: 1rem;
-    box-shadow: $thumb-shadow;
+    transform: perspective(50rem) rotateY(-3deg);
+    transition: transform 1s ease 0s;
+
+    &:hover {
+      transform: perspective(0) rotateY(-4deg);
+    }
 
     .thumb-header {
 
       &,
       .info {
+        color: $primary;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         font-size: $font-size;
-        color: $primary;
+        justify-content: space-between;
 
         .ratio {
           margin: 0 .5rem;
@@ -40,17 +46,17 @@ article {
           }
 
           .date {
-            margin-top: .3rem;
             font-size: $font-size-small;
+            margin-top: .3rem;
           }
         }
       }
 
       .comments {
+        color: $primary;
+        cursor: pointer;
         font-size: $font-size-medium;
         text-decoration: none;
-        cursor: pointer;
-        color: $primary;
       }
     }
 
@@ -58,9 +64,9 @@ article {
       margin: 2rem;
 
       img {
-        width: 50%;
-        margin: auto;
         display: block;
+        margin: auto;
+        width: 50%;
 
         @media all and (max-width: 992px) {
           width: 70%;
@@ -76,10 +82,10 @@ article {
       }
 
       .footer-action {
-        width: 100%;
         display: flex;
         justify-content: center;
         margin-top: 2rem;
+        width: 100%;
       }
     }
   }
