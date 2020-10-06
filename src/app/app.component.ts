@@ -12,7 +12,6 @@ import { ArticleService } from './article/article.service';
 })
 export class AppComponent {
 
-  // tslint:disable-next-line: no-restricted-globals
   public articles$: Observable<Article[]> = this.articleService.articles$.pipe(tap(() =>  window.scroll(0, 0)));
 
   constructor(
